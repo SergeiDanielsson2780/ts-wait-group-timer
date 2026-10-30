@@ -1,6 +1,6 @@
 {
   "name": "ts-wait-group-timer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Monitors concurrent operations and reports which finished before their deadlines and which timed out.",
   "type": "module",
   "main": "src/index.js",
