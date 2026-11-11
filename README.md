@@ -40,3 +40,10 @@ The trade-off: this library does **not** schedule the operations, does **not** c
 The deadline is **inclusive**: an operation whose elapsed time equals its timeout exactly is counted as `completed`, not `timedOut`. If your timeout is 100ms and `report()` is called at elapsed=100ms, the operation is on time. Only elapsed strictly greater than timeout counts as a timeout. This removes off-by-one ambiguity at the boundary.
 
 Re-tracking the same id throws — double-tracking is almost always a bug, so it fails loudly. Call `untrack(id)` first if you genuinely want to re-add an id.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
